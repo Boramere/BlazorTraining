@@ -1,0 +1,21 @@
+﻿@page "/NavLockDemo"
+@inject IJSRuntime jsRunTime
+
+<h3>NavLock</h3>
+
+<NavigationLock ConfirmExternalNavigation="true" OnBeforeInternalNavigation="@OnBeforeInternalNavigation" />
+
+<a href="https://www.google.com">Google</a>
+
+
+@code {
+    private async Task OnBeforeInternalNavigation(LocationChangingContext context)
+    {
+        var isConfirmed = await jsRunTime.InvokeAsync<bool>("confirm", "Are you sure?");
+
+        if (!isConfirmed)
+        {
+            context.PreventNavigation();
+        }
+    }
+}

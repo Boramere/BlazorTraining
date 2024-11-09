@@ -1,0 +1,19 @@
+﻿@page "/InjectDemo"
+@using BlazorWebAppDemo.Services
+@rendermode InteractiveServer
+
+@inject IMyService myService
+
+<h3>InjectDemo</h3>
+
+<input id="txtName" />
+<button @onclick="@(()=> myService.AddName("Rocket"))">Add Rocket</button>
+
+@foreach (var name in myService.Names)
+{
+    @name
+    <br />
+}
+
+@code {
+}

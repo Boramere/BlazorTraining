@@ -1,0 +1,40 @@
+﻿@page "/EditFormDemo"
+@using BlazorWebAppDemo.Services
+<h3>EditFormDemo</h3>
+
+<EditForm Model="@hero">
+    <input type="text" @bind="@hero.Name" />
+</EditForm>
+
+<EditForm EditContext="@heroEditContext">
+
+</EditForm>
+
+<EditForm Model="@hero"
+        OnInvalidSubmit="InvalidSubmit"
+        OnSubmit="Submit"
+        OnValidSubmit="ValidSubmit">
+
+</EditForm>
+
+
+@code {
+    private Superhero hero = new() {Name = "Test"};
+    private EditContext? heroEditContext;
+    protected override void OnInitialized()
+    {
+        heroEditContext = new(hero);
+    }
+    private void InvalidSubmit(EditContext editContext)
+    {
+        
+    }
+    private void Submit(EditContext editContext)
+    {
+        
+    }
+    private void ValidSubmit(EditContext editContext)
+    {
+
+    }
+}

@@ -1,0 +1,11 @@
+﻿@using BlazorWebAppDemo.Services
+
+@Model.SomeText
+
+<button onclick="@(()=>Model.SomeText = DateTime.Now.ToLongTimeString())">Set</button>
+<br />
+
+@code {
+    [CascadingParameter]
+    public required CascadingModel Model { get; set; }
+}

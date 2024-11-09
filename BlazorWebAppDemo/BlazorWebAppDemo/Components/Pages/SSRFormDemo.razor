@@ -1,0 +1,27 @@
+﻿@page "/SSRFormDemo"
+@using BlazorWebAppDemo.Services
+<h3>SSRForm</h3>
+
+<p>This requires turning off the InteractiveServer on the routes component</p>
+
+<EditForm Enhance Model="@hero" OnValidSubmit="ValidSubmit" FormName="heroform">
+    <DataAnnotationsValidator />
+    <BGSInputText Label="Name" @bind-Value="@hero.Name" />
+    <BGSInputText Label="Real Name" @bind-Value="@hero.RealName" />
+    <BGSInputText Label="Powers" @bind-Value="@hero.Powers" />
+    <button class="btn btn-success" type="submit">Submit</button>
+</EditForm>
+
+@message
+
+@code {
+    [SupplyParameterFromForm]
+    public Superhero hero { get; set; } = new();
+
+    private string message = "";
+
+    private void ValidSubmit(EditContext editContext)
+    {
+        message = $"Submitted {hero.Name}, real name {hero.RealName} with {hero.Powers}";
+    }
+}

@@ -1,0 +1,33 @@
+﻿@page "/HtmlRendererDemo"
+
+<h3>HTMLRendererDemo</h3>
+
+@((MarkupString) html)
+
+@code {
+    string html;
+    protected override async Task OnInitializedAsync()
+    {
+        IServiceCollection services = new ServiceCollection();
+        services.AddLogging();
+
+        IServiceProvider serviceProvider = services.BuildServiceProvider();
+        ILoggerFactory loggerFactory = serviceProvider.GetRequiredService<ILoggerFactory>();
+
+        using var htmlRenderer = new HtmlRenderer(serviceProvider, loggerFactory);
+        html = await htmlRenderer.Dispatcher.InvokeAsync(async () =>
+        {
+            RenderFragment content =@<text>Hello from the renderer @(1+2)</text>;
+            var dictionary = new Dictionary<string, object?>
+            {
+                {"ChildContent", content}
+            };
+
+            var parameters = ParameterView.FromDictionary(dictionary);
+            var output = await htmlRenderer.RenderComponentAsync<Alert>(parameters);
+            return output.ToHtmlString();
+        });
+
+        base.OnInitialized();
+    }
+}

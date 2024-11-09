@@ -1,0 +1,45 @@
+﻿@page "/CascadingDemo"
+@rendermode InteractiveServer
+<h3>CascadingDemo</h3>
+
+
+<h2>No cascade</h2>
+<NoCascade Parameter="@ValueToCascade"/>
+<NoCascade Parameter="@ValueToCascade"/>
+<NoCascade Parameter="@ValueToCascade"/>
+
+<h2>Cascade</h2>
+<CascadingValue Value="@ValueToCascade">
+    <Cascade/>
+    <Cascade/>
+    <Cascade/>
+</CascadingValue>
+
+<h2>Cascade Name</h2>
+<CascadingValue Value="@ValueToCascade" Name="CParameter">
+    <Cascade/>
+    <Cascade/>
+    <Cascade/>
+</CascadingValue>
+
+<h2>Cascade Fixed</h2>
+<CascadingValue Value="@ValueToCascade" Name="CParameter" IsFixed="true">
+    <Cascade/>
+    <Cascade/>
+    <Cascade/>
+</CascadingValue>
+
+<h2>Root Cascade</h2>
+<RootCascade/>
+
+<br />
+<button @onclick="@UpdateValue">Update value</button>
+
+@code {
+    string ValueToCascade = "Hello";
+
+    private void UpdateValue()
+    {
+        ValueToCascade = "Hello to you too";
+    }
+}

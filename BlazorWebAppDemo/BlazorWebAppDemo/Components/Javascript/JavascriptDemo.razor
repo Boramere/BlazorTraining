@@ -1,0 +1,13 @@
+﻿@page "/JavascriptDemo"
+@inject IJSRuntime jsRuntime
+
+<h3>JavascriptDemo</h3>
+
+<button class="btn btn-primary" @onclick="ClickAsync">Click Me</button>
+
+@code {
+    public async Task ClickAsync()
+    {
+        var confirmed = await jsRuntime.InvokeAsync<bool>("confirm", "Are you sure?");
+    }
+}

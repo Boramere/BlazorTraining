@@ -1,0 +1,16 @@
+﻿@page "/AbstractionDemo"
+@using BlazorWebAppDemo.Services
+@inject SuperheroData superheroData
+
+<h3>AbstractionDemo</h3>
+
+<AbstractionComponent Label="Supers" Items="@superheroData.GetData()" @bind-Value="@hero">
+    @context.Name
+</AbstractionComponent>
+
+<p>Selected Hero: @hero?.RealName</p>
+
+@code {
+    private Superhero hero;
+
+}

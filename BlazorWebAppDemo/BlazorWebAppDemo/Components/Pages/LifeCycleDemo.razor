@@ -1,0 +1,110 @@
+﻿@page "/LifecycleDemo"
+@page "/LifecycleDemo/{Parameter}"
+@rendermode InteractiveServer
+
+<h3>LifeCycleDemo</h3>
+
+@DateTime.Now<br />
+@foreach (var e in Events)
+{
+    <div>@e</div>
+}
+
+<a href="@($"/LifeCycleDemo/{Guid.NewGuid()}")">Refresh</a>
+
+@code {
+    List<string> Events = new();
+
+    [Parameter]
+    public string? Parameter { get; set; }
+
+    public void LogEvent(string eventName)
+    {
+        Events.Add($"{eventName} start");
+        Events.Add($"{eventName} end");
+    }
+
+    //These methods are part of the componentBase class, and can be overridden to control behaviour
+    //These events are listed in order of operation
+
+    /// <summary>
+    /// The base method here should always be called, or the components won't work
+    /// Generally not overriden, but it does allow a place to set default values on parameters
+    /// </summary>
+    /// <param name="parameters">This is a list of all the parameters from the parent components</param>
+    /// <returns></returns>
+    public override Task SetParametersAsync(ParameterView parameters)
+    {
+        LogEvent("SetParameters");
+        return base.SetParametersAsync(parameters);
+    }
+
+    /// <summary>
+    /// This runs once, when the component is first created
+    /// This behaviour is a bit different in component render mode
+    /// </summary>
+    protected async override void OnInitialized()
+    {
+        LogEvent("OnInitialized");
+    }
+
+    /// <summary>
+    /// As above, but async
+    /// </summary>
+    /// <returns></returns>
+    protected override Task OnInitializedAsync()
+    {
+        LogEvent("OnInitializedAsync");
+        return base.OnInitializedAsync();
+    }
+
+    /// <summary>
+    /// This will run after the initial set up has run, and then again whenever the components parameters are changed
+    /// Useful to react to changes in params, for example loading database data if the data depends on the parameter values
+    /// </summary>
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+    }
+
+    /// <summary>
+    /// As above, but async
+    /// </summary>
+    /// <returns></returns>
+    protected override Task OnParametersSetAsync()
+    {
+        LogEvent("OnParametersSetAsync");
+        return base.OnParametersSetAsync();
+    }
+
+    /// <summary>
+    /// This runs after the component has rendered
+    /// Useful to trigger JS calls if they interact with the DOM
+    /// </summary>
+    /// <param name="firstRender"></param>
+    protected override void OnAfterRender(bool firstRender)
+    {
+        LogEvent($"First Render? {firstRender}");
+    }
+
+    /// <summary>
+    /// As above
+    /// </summary>
+    /// <param name="firstRender"></param>
+    /// <returns></returns>
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        LogEvent($"First Render Async? {firstRender}");
+        return base.OnAfterRenderAsync(firstRender);
+    }
+
+    /// <summary>
+    /// The component will always render once. This can control if the component should be re-rendered when required
+    /// </summary>
+    /// <returns></returns>
+    protected override bool ShouldRender()
+    {
+        LogEvent($"ShouldRender");
+        return true;
+    }
+}

@@ -1,0 +1,37 @@
+﻿@page "/BindingDemo"
+@rendermode InteractiveServer
+
+<h3>BindingDemo</h3>
+
+<input type="text" @bind="@TextValue1" />@TextValue1
+<br/>
+<input type="text" @bind-value="@TextValue2" @bind-value:event="oninput"/>@TextValue2
+<br />
+<input type="text" 
+    @bind-value="@TextValue3" 
+    @bind-value:after="@(()=> {TextValue3 = TextValue3 + "After";})"
+    />@TextValue3
+<br />
+<input type="text"
+       @bind-value="@TextValue4"
+       @bind-value:after="@ValidateText" />@TextValueResult
+@code {
+    string TextValue1 = "VariableTest";
+    string TextValue2 = "";
+    string TextValue3 = "";
+    string TextValue4 = "";
+    string TextValue5 = "";
+    string TextValueResult = "";
+
+    private void ValidateText()
+    {
+        if (string.IsNullOrWhiteSpace(TextValue4))
+        {
+            TextValueResult = "FAIL";
+        }
+        else
+        {
+            TextValueResult = "OK";
+        }
+    }
+}

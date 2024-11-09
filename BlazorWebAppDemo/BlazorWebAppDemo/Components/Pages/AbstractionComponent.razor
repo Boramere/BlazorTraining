@@ -1,0 +1,35 @@
+﻿@using System.Linq.Expressions
+@typeparam T
+
+<div class="mb-3">
+    @{
+        if (!string.IsNullOrEmpty(Label))
+        {
+            <label for="@Id" class="form-label">@Label</label>
+        }
+    }
+    <InputSelect id="@Id" Value="@Value" ValueChanged="ValueChanged" ValueExpression="ValueExpression">
+        @foreach (var item in Items)
+        {
+            <option value="@item">@ChildContent(item)</option>
+        }
+    </InputSelect>
+</div>
+
+
+@code {
+    [Parameter, EditorRequired]
+    public required T Value { get; set; }
+    [Parameter]
+    public EventCallback<T> ValueChanged { get; set; }
+    [Parameter]
+    public Expression<Func<T>>? ValueExpression { get; set; }
+    [Parameter]
+    public required RenderFragment<T> ChildContent { get; set; }
+    [Parameter]
+    public string? Label { get; set; }
+    [Parameter]
+    public string Id { get; set; } = Guid.NewGuid().ToString();
+    [Parameter]
+    public required IEnumerable<T> Items { get; set; }
+}

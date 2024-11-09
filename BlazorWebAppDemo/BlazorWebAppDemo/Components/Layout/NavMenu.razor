@@ -1,0 +1,197 @@
+﻿@using Microsoft.AspNetCore.Components.Sections
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">BlazorWebAppDemo</a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="counter">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="weather">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="injectdemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Inject Demo
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="typeparamdemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Type Param Demo
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="attributesdemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Attributes Demo
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="eventcallbackdemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Event Callback Demo
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="mybuttondemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> My Button Demo
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="bindingdemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Binding Demo
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="bindingcomponentdemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Binding Component Demo
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="statehaschangeddemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> State Has Changed Demo
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="cascadingdemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Cascade Demo
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="lifecycledemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Lifecycle Demo
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="prerenderdemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Prerender Demo
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="storagedemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Storage Demo
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="stateservicedemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Service State Demo
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="virtualdemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Virtual
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="navlinkdemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Nav Link
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="navigationManagerdemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Nav Manager
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="errorboundarydemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Error Boundary
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="navlockdemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Navigation Lock
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="quickgriddemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Quick Grid
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="headcontentdemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> HeadContent / Page Title
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="sectionoutletdemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Section Outlet
+            </NavLink>
+        </div>
+        <SectionOutlet SectionName="Menu"/>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="editformdemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Edit Form
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="validationdemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Validation
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="formcomponentdemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Form Component
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="ssrformdemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> SSR Form
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="templatedcomponentdemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Templated Components
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="htmlrendererdemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> HTML Renderer
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="renderfragmentmethoddemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Render Fragment Method
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="abstractiondemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Abstraction
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="isolatedcssdemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Isolated CSS
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="javascriptdemo">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Javascript
+            </NavLink>
+        </div>
+    </nav>
+</div>
+

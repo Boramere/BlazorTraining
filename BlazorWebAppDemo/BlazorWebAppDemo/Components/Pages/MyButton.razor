@@ -1,0 +1,35 @@
+﻿@inject IJSRuntime jsRuntime
+
+<button @attributes="AdditionalAttributes" @onclick="@OnButtonClickedAsync" disabled="@isExecuting">Click Me</button>
+
+@code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    [Parameter]
+    public EventCallback OnClick { get; set; }
+    [Parameter]
+    public string? ConfirmMessage { get; set; }
+
+    private bool isExecuting = false;
+    private bool confirmed = true;
+
+    private async Task OnButtonClickedAsync()
+    {
+
+        if (isExecuting)
+            return;
+
+        if (ConfirmMessage != null)
+        {
+            confirmed = await jsRuntime.InvokeAsync<bool>("confirm", ConfirmMessage);
+        }
+        if (confirmed)
+        {
+            isExecuting = true;
+            await InvokeAsync(StateHasChanged);
+            await OnClick.InvokeAsync();
+            isExecuting = false;
+        }
+    }
+}

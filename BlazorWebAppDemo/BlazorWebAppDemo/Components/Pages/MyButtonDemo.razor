@@ -1,0 +1,19 @@
+﻿@page "/MyButtonDemo"
+@rendermode InteractiveServer
+
+<h3>Counter</h3>
+
+<p role="status">Current Count: @currentCount</p>
+
+<MyButton class="btn btn-primary" OnClick="IncrementCount" ConfirmMessage="Are you reaaaalllllyyyy sure?">Click Me</MyButton>
+<button class="btn btn-primary" @onclick="IncrementCount">Click Me</button>
+
+@code {
+    private int currentCount = 0;
+
+    private async Task IncrementCount()
+    {
+        await Task.Delay(2000);
+        currentCount++;
+    }
+}

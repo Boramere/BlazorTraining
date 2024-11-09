@@ -1,0 +1,32 @@
+﻿@page "/NavigationManagerDemo"
+@inject NavigationManager navMan
+
+<h3>NavigationManagerDemo</h3>
+
+<button class="btn btn-primary" @onclick="@(() => navMan.NavigateTo("NavigationManagerDemo"))">Navigate</button>
+<button class="btn btn-primary" @onclick="@(() => navMan.NavigateTo("NavigationManagerDemo", true))">Reload</button>
+<button class="btn btn-primary" @onclick="@(() => navMan.NavigateTo("NavigationManagerDemo?firstName=Ben&lastName=Meade"))">Params</button>
+
+<table>
+    <Virtualize Items="@GetData()">
+        <tr>
+            <td>@context.Key</td>
+            <td>@context.Value</td>
+        </tr>
+    </Virtualize>
+</table>
+
+@code {
+    Dictionary<string, object?> dict;
+
+    private Dictionary<string, object?> GetData()
+    {
+        dict = new();
+        dict.Add("One", "OneValue");
+        dict.Add("Two", "TwoValue");
+
+        var newurl = navMan.GetUriWithQueryParameters(dict);
+
+        return dict;
+    }
+}

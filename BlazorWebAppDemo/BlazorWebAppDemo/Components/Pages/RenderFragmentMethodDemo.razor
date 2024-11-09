@@ -1,0 +1,12 @@
+﻿@page "/RenderFragmentMethodDemo"
+
+<h3>RenderFragmentMethodDemo</h3>
+
+@GetAlert(@<text>This is an alert</text>, AlertTypeEnum.Warning)
+
+@code {
+    public RenderFragment GetAlert(RenderFragment fragment, AlertTypeEnum alertType)
+    {
+        return @<div class="@($"alert alert-{alertType.ToString().ToLower()}")" role="alert">@fragment</div>;
+    }
+}

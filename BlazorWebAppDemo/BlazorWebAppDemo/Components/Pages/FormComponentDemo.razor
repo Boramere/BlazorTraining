@@ -1,0 +1,13 @@
+﻿@page "/FormComponentDemo"
+@using BlazorWebAppDemo.Services
+
+<h3>FormComponent</h3>
+
+<EditForm Model="@hero">
+    <DataAnnotationsValidator/>
+    <BGSInputText id="RealName" Label="Real Name" @bind-Value="@hero.RealName"/>
+</EditForm>
+
+@code {
+    private Superhero hero = new();
+}

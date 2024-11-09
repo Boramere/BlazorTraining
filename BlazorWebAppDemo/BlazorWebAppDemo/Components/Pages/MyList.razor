@@ -1,0 +1,14 @@
+﻿@typeparam TItem
+
+@if (Items !=null)
+{
+    foreach (var item in Items)
+    {
+        <div>@item?.ToString()</div>
+    }
+}
+
+@code {
+    [Parameter]
+    public IEnumerable<TItem>? Items { get; set; }
+}

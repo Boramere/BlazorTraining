@@ -1,0 +1,22 @@
+﻿@page "/EventCallbackDemo"
+<h3>EventCallbackDemo</h3>
+
+<button @onclick="@Clicked">Sync</button>
+<button @onclick="@ClickedAsync">Async</button>
+<button @onclick="@(()=>Clicked())">Explicit</button>
+<button @onclick="@(async () => {Clicked(); await ClickedAsync();})">Explicit</button>
+<button @onclick="@ClickedWithArgs">Sync</button>
+
+@code {
+    void Clicked() { }
+
+    Task ClickedAsync()
+    {
+        return Task.CompletedTask;
+    }
+
+    void ClickedWithArgs(MouseEventArgs args)
+    {
+        var y = args.ScreenY;
+    }
+}

@@ -1,0 +1,36 @@
+﻿@page "/VirtualDemo"
+@using BlazorWebAppDemo.Services
+@inject SuperheroData superheroData
+
+
+<h3>Super Heroes</h3>
+<p>Showing @numHeroes / @totalHeroes</p>
+<table>
+    <Virtualize ItemsProvider="@LoadHeroes">
+        <EmptyContent>
+            No Heros found
+        </EmptyContent>
+        <ChildContent>
+            <tr>
+                <td>@context.Name</td>
+                <td>@context.RealName</td>
+                <td>@context.Powers</td>
+            </tr>
+        </ChildContent>
+    </Virtualize>
+</table>
+
+@code {
+    int totalHeroes = 0;
+    int numHeroes = 0;
+
+    private async ValueTask<ItemsProviderResult<Superhero>> LoadHeroes(ItemsProviderRequest request)
+    {
+        totalHeroes = superheroData.GetDataCount();
+        numHeroes = Math.Min(request.Count, totalHeroes - request.StartIndex);
+
+        var heroes = await superheroData.GetDataAsync(request.StartIndex, numHeroes, request.CancellationToken);
+        StateHasChanged();
+        return new ItemsProviderResult<Superhero>(heroes, totalHeroes);
+    }
+}

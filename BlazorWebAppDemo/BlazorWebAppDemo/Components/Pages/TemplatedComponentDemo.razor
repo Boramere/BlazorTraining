@@ -1,0 +1,22 @@
+﻿@page "/TemplatedComponentDemo"
+
+<h3>AlertDemo</h3>
+
+<Alert>
+    The content
+</Alert>
+
+<Alert>
+    <ChildContent>
+        The content
+    </ChildContent>    
+</Alert>
+
+<Alert AlertType="AlertTypeEnum.Warning">
+    The content @(1+2)
+</Alert>
+
+
+@code {
+
+}

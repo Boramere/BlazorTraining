@@ -1,0 +1,20 @@
+﻿@page "/SectionOutletDemo"
+@using BlazorWebAppDemo.Components.Layout
+@using Microsoft.AspNetCore.Components.Sections
+<h3>SectionOutletDemo</h3>
+
+<SectionContent SectionId="MainLayout.TopbarSection">
+    <button class="btn btn-primary">Click Me</button>
+</SectionContent>
+
+<SectionContent SectionName="Menu">
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="sectionoutletdemo">
+            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Click Here
+        </NavLink>
+    </div>
+</SectionContent>
+
+@code {
+
+}

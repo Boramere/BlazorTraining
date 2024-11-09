@@ -1,0 +1,22 @@
+﻿@page "/ValidationDemo"
+@using BlazorWebAppDemo.Services
+<h3>ValidationDemo</h3>
+
+<EditForm Model="@hero" OnValidSubmit="ValidSubmit">
+    <DataAnnotationsValidator/>
+    <InputText @bind-Value="hero.Name"/><br />
+    <ValidationMessage For="@(()=>hero.Name)"/>
+    <InputText @bind-Value="hero.RealName"/><br />
+    <InputText @bind-Value="hero.Powers"/><br />
+    <ValidationSummary/>
+    <button type="submit">Save</button>
+</EditForm>
+
+@code {
+    private Superhero hero = new();
+
+    private void ValidSubmit(EditContext editContext)
+    {
+        
+    }
+}
