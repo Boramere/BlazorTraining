@@ -8,9 +8,9 @@
 
 @if (ShowRequestId)
 {
-    <p>
-        <strong>Request ID:</strong> <code>@RequestId</code>
-    </p>
+        <p>
+            <strong>Request ID:</strong> <code>@RequestId</code>
+        </p>
 }
 
 <h3>Development Mode</h3>
@@ -24,7 +24,7 @@
     and restarting the app.
 </p>
 
-@code{
+@code {
     [CascadingParameter]
     private HttpContext? HttpContext { get; set; }
 
