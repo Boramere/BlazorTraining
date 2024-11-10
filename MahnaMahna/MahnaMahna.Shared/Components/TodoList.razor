@@ -1,5 +1,60 @@
-﻿<h3>TodoList</h3>
+﻿@page "/List"
+@inject ITodoApiService _api
+@inject NotificationService _notificationService
+@implements IDisposable
+
+<SvgCheckboxResources/>
+
+<div class="todo-list box">
+    <AddNewTodo />
+    @foreach (var item in TodoItems)
+    {
+        <div class="todo">
+            <SvgCheckbox @bind-Value:get="@(item.State==TodoItemState.Completed)"
+                         @bind-Value:set="@((value)=>ChangeStatusAsync(item,value))"
+                         Url="@($"/items/{item.Id}")">
+                @item.Text
+            </SvgCheckbox>
+        </div>
+    }
+</div>
 
 @code {
+    private List<TodoItem> TodoItems { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        TodoItems = (await _api.GetTodoItemsAsync()).ToList();
+        _notificationService.TodoChanged += OnToDoChanged;
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task ChangeStatusAsync(TodoItem item, bool value)
+    {
+        item.State = value ? TodoItemState.Completed : TodoItemState.Pending;
+        await _api.UpdateTodoItemAsync(item);
+    }
+
+    private void OnToDoChanged(TodoItem todoItem)
+    {
+        var existingItem = TodoItems.FirstOrDefault(x => x.Id == todoItem.Id);
+        if (existingItem != null)
+        {
+            existingItem.Text = todoItem.Text;
+            existingItem.State = todoItem.State;
+            existingItem.Categories = todoItem.Categories;
+        }
+        else
+        {
+            TodoItems.Add(existingItem);
+        }
+        StateHasChanged();
+    }
+
+    void IDisposable.Dispose()
+    {
+        _notificationService.TodoChanged -= OnToDoChanged;
+    }
 
 }
